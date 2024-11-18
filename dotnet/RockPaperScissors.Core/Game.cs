@@ -16,12 +16,12 @@ public enum GameResult
 
 public interface IGame
 {
-    GameResult Play(Move playerMove);
+    GameResult EvaluateResult(Move playerMove, Move computerMove);
 }
 
 public class Game : IGame
 {
-    public GameResult Play(Move playerMove)
+    public GameResult EvaluateResult(Move playerMove, Move computerMove)
     {
         throw new NotImplementedException("Implement the game logic here");
     }

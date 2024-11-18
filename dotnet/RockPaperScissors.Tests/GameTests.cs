@@ -12,7 +12,7 @@ public class GameTests
         var game = new Game();
 
         // Act
-        var result = game.Play(Move.Rock);
+        var result = game.EvaluateResult(Move.Rock, Move.Scissors); // Example computer move
 
         // Assert
         Assert.True(result is GameResult.Win or GameResult.Lose or GameResult.Draw);
