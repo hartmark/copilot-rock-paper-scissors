@@ -1,0 +1,27 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": ".NET Core Launch (API)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/dotnet/RockPaperScissors.Api/bin/Debug/net8.0/RockPaperScissors.Api.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/dotnet/RockPaperScissors.Api",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+                "uriFormat": "%s/game/play?move=Rock"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        }
+    ]
+}

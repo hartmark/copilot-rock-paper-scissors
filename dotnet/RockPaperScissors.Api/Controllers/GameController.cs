@@ -14,8 +14,8 @@ public class GameController : ControllerBase
         _game = game;
     }
 
-    [HttpPost("play")]
-    public IActionResult Play([FromBody] Move move)
+    [HttpGet("play")]
+    public IActionResult Play([FromQuery] Move move)
     {
         throw new NotImplementedException("Implement the API endpoint here");
     }
