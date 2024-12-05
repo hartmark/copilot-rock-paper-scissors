@@ -5,18 +5,19 @@ namespace RockPaperScissors.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class GameController : ControllerBase
+public class GameController(IGame game) : ControllerBase
 {
-    private readonly IGame _game;
-
-    public GameController(IGame game)
+    [HttpPost("play")]
+    public IActionResult Play([FromBody, ModelBinder(BinderType = typeof(MoveModelBinder))] Move playerMove)
     {
-        _game = game;
-    }
+        var computerMove = (Move)new Random().Next(1, 4);
 
-    [HttpGet("play")]
-    public IActionResult Play([FromQuery] Move move)
-    {
-        throw new NotImplementedException("Implement the API endpoint here");
+        var result = game.EvaluateResult(playerMove, computerMove);
+        return Ok(new PlayResponse
+        {
+            PlayerMove = playerMove,
+            ComputerMove = computerMove,
+            Result = result
+        });
     }
 }

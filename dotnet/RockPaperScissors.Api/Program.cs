@@ -1,8 +1,12 @@
+using RockPaperScissors.Api;
 using RockPaperScissors.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+{
+    options.ModelBinderProviders.Add(new MoveModelBinderProvider());
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IGame, Game>();

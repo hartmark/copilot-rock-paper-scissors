@@ -2,16 +2,16 @@ namespace RockPaperScissors.Core;
 
 public enum Move
 {
-    Rock,
-    Paper,
-    Scissors
+    Rock = 1,
+    Paper = 2,
+    Scissors = 3
 }
 
 public enum GameResult
 {
-    Win,
-    Lose,
-    Draw
+    Win = 1,
+    Lose = 2,
+    Draw = 3
 }
 
 public interface IGame
@@ -23,6 +23,17 @@ public class Game : IGame
 {
     public GameResult EvaluateResult(Move playerMove, Move computerMove)
     {
-        throw new NotImplementedException("Implement the game logic here");
+        if (playerMove == computerMove)
+        {
+            return GameResult.Draw;
+        }
+
+        return (playerMove, computerMove) switch
+        {
+            (Move.Rock, Move.Scissors) => GameResult.Win,
+            (Move.Paper, Move.Rock) => GameResult.Win,
+            (Move.Scissors, Move.Paper) => GameResult.Win,
+            _ => GameResult.Lose
+        };
     }
 }
